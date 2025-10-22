@@ -1,8 +1,10 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 
-
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CharacterController : ControllerBase
@@ -13,10 +15,10 @@ public class CharacterController : ControllerBase
         _characterService = characterService;
     }
 
-
     [HttpGet("GetAll")]
     public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> GetAll()
     {
+
         return Ok(await _characterService.GetAll());
     }
 
